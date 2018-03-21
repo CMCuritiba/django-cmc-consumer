@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+consumer/lib/helper.py
+consumer/lib/msconsumer.py
+django_cmc_consumer.egg-info/PKG-INFO
+django_cmc_consumer.egg-info/SOURCES.txt
+django_cmc_consumer.egg-info/dependency_links.txt
+django_cmc_consumer.egg-info/top_level.txt
