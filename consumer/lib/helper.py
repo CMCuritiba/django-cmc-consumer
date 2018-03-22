@@ -35,4 +35,13 @@ class ServiceHelper(object):
 	def get_funcionario(self, pessoa):
 		return self.cons.consome_funcionario(pessoa)
 
-	
+	# ----------------------------------------------------------------------------------------------------------------
+	# Retorna setores consumidos formatados para combo box
+	# ----------------------------------------------------------------------------------------------------------------
+	def get_setores_combo(self, inicial):
+		setores = self.cons.consome_setores()
+		objetos_setores = []
+		objetos_setores.append(Setor(None, inicial, inicial, None, None, None))
+		for line in setores:
+			objetos_setores.append(Setor(line['set_id'], line['set_nome'], line['set_sigla'], line['set_id_superior'], line['set_ativo'], line['set_tipo']))
+		return objetos_setores

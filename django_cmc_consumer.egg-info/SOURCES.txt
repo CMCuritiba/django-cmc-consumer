@@ -2,6 +2,7 @@ LICENSE
 MANIFEST.in
 README.rst
 setup.py
+consumer/__init__.py
 consumer/lib/helper.py
 consumer/lib/msconsumer.py
 django_cmc_consumer.egg-info/PKG-INFO
