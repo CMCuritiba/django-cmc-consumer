@@ -5,6 +5,7 @@ setup.py
 consumer/__init__.py
 consumer/lib/helper.py
 consumer/lib/msconsumer.py
+consumer/lib/views.py
 django_cmc_consumer.egg-info/PKG-INFO
 django_cmc_consumer.egg-info/SOURCES.txt
 django_cmc_consumer.egg-info/dependency_links.txt

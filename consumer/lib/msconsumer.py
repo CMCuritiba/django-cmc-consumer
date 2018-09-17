@@ -3,6 +3,7 @@ import environ
 import simplejson as json
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
+import requests
 
 class Setor(object):
 	def __init__(self, set_id, set_nome, set_sigla, set_id_superior, set_ativo, set_tipo):	
@@ -89,3 +90,39 @@ class MSCMCConsumer(object):
 		js = raw.readlines()
 		js_object = json.loads(js[0])
 		return data
+
+	# -----------------------------------------------------------------------------------
+	# chamada API reunioes comissao
+	# -----------------------------------------------------------------------------------
+	def consome_reuniao_comissao(request):
+		search_url = '{}/api/spl/reuniao_comissao/'.format(self.MSCMC_SERVER)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		reunioes = r.json()
+
+		return JsonResponse(reunioes, safe=False)				
+
+	# -----------------------------------------------------------------------------------
+	# chamada API retorna projeto a partir da pauta e da reuniao
+	# -----------------------------------------------------------------------------------
+	def consome_projeto(request, pac_id, par_id):
+		search_url = '{}/api/spl/projeto_reuniao/{}/{}/'.format(self.MSCMC_SERVER, pac_id, par_id)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		projeto = r.json()
+
+		return JsonResponse(projeto, safe=False)						
+
+	# -----------------------------------------------------------------------------------
+	# chamada API retorna projeto a partir da pauta e da reuniao
+	# -----------------------------------------------------------------------------------
+	def consome_projetos(request, pac_id):
+		search_url = '{}/api/spl/projetos_reuniao/{}/'.format(self.MSCMC_SERVER, pac_id)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		projetos = r.json()
+
+		return JsonResponse(projetos, safe=False)								
