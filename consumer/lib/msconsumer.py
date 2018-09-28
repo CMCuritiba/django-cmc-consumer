@@ -126,3 +126,15 @@ class MSCMCConsumer(object):
 		projetos = r.json()
 
 		return JsonResponse(projetos, safe=False)								
+
+	# -----------------------------------------------------------------------------------
+	# chamada API reunioes comissao pela range de datas
+	# -----------------------------------------------------------------------------------
+	def consome_reuniao_comissao_range(self, data_inicio, data_fim):
+		search_url = '{}/api/spl/reuniao_comissao_range/{}/{}/'.format(self.MSCMC_SERVER)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		reunioes = r.json()
+
+		return JsonResponse(reunioes, safe=False)				
