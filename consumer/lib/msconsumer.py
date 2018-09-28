@@ -130,8 +130,8 @@ class MSCMCConsumer(object):
 	# -----------------------------------------------------------------------------------
 	# chamada API reunioes comissao pela range de datas
 	# -----------------------------------------------------------------------------------
-	def consome_reuniao_comissao_range(self, data_inicio, data_fim):
-		search_url = '{}/api/spl/reuniao_comissao_range/{}/{}/'.format(self.MSCMC_SERVER)
+	def consome_reuniao_comissao_range(self, request, data_inicio, data_fim):
+		search_url = '{}/api/spl/reuniao_comissao_range/{}/{}/'.format(self.MSCMC_SERVER, data_inicio, data_fim)
 
 		array_json=[]
 		r = requests.get(search_url, verify=False)
