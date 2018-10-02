@@ -138,3 +138,50 @@ class MSCMCConsumer(object):
 		reunioes = r.json()
 
 		return JsonResponse(reunioes, safe=False)				
+
+	# -----------------------------------------------------------------------------------
+	# chamada API retorna rec_id através pac_id
+	# -----------------------------------------------------------------------------------
+	def consome_rec_id(self, request, pac_id):
+		search_url = '{}/api/spl/spl_get_rec_id/{}/'.format(self.MSCMC_SERVER, pac_id)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		rec_id = r.json()
+		try:
+			result = rec_id[0]['rec_id']
+		except:
+			result = None
+
+		return result
+
+	# -----------------------------------------------------------------------------------
+	# chamada API retorna reuniao atraves rec_id
+	# -----------------------------------------------------------------------------------
+	def consome_reuniao(self, request, rec_id):
+		search_url = '{}/api/spl/spl_get_reuniao/{}/'.format(self.MSCMC_SERVER, rec_id)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		reuniao = r.json()
+		try:
+			result = reuniao[0]
+		except:
+			result = None
+
+		return result
+
+	# -----------------------------------------------------------------------------------
+	# chamada API retorna comissao atraves con_id
+	# -----------------------------------------------------------------------------------
+	def consome_comissao(self, request, con_id):
+		search_url = '{}/api/spl/spl_get_comissao/{}/'.format(self.MSCMC_SERVER, con_id)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		comissao = r.json()
+		try:
+			result = comissao[0]
+		except:
+			result = None
+		return result
