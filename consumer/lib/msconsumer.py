@@ -23,6 +23,36 @@ class Funcionario(object):
 		self.set_id = set_id
 		self.ind_estagiario = ind_estagiario
 
+class Vereador(object):
+	def __init__(self, ver_id, matricula, ver_sexo, ut_id, ini_nome, ini_ativa, ver_nome_completo,
+				 ini_codigo_prefeitura, ver_site, ver_biografia, ver_redes_sociais, ver_fone_principal,
+				 ver_fones, ver_legislaturas, ver_localizacao, ver_partido, arq_id, arq_id_biografia):
+		self.ver_id = ver_id
+		self.matricula = matricula
+		self.ver_sexo = ver_sexo
+		self.ut_id = ut_id
+		self.ini_nome = ini_nome
+		self.ini_ativa = ini_ativa
+		self.ver_nome_completo = ver_nome_completo
+		self.ini_codigo_prefeitura = ini_codigo_prefeitura
+		self.ver_site = ver_site
+		self.ver_biografia = ver_biografia
+		self.ver_redes_sociais = ver_redes_sociais
+		self.ver_fone_principal = ver_fone_principal
+		self.ver_fones = ver_fones
+		self.ver_legislaturas = ver_legislaturas
+		self.ver_localizacao = ver_localizacao
+		self.ver_partido = ver_partido
+		self.arq_id = arq_id
+		self.arq_id_biografia = arq_id_biografia
+
+class Vereadores_cargo_mesa(object):
+	def __init__(self, matricula, ini_nome, crg_nome, crg_ordem):
+		self.matricula = matricula
+		self.ini_nome = ini_nome
+		self.crg_nome = crg_nome
+		self.crg_ordem = crg_ordem
+
 # ----------------------------------------------------------------------------------------------------------------
 # Classe responsável por consumir as informações JSON 
 # ----------------------------------------------------------------------------------------------------------------
@@ -185,3 +215,37 @@ class MSCMCConsumer(object):
 		except:
 			result = None
 		return result
+
+	# ----------------------------------------------------------------------------------------------------------------
+	# Consome vereadores
+	# ----------------------------------------------------------------------------------------------------------------
+	def consome_vereadores(self):
+		search_url = '{}/api/spl/vereadores/?format=json'.format(self.MSCMC_SERVER)
+		r = requests.get(search_url, verify=False)
+		vereadores = r.json()
+
+		return JsonResponse(vereadores, safe=False)
+
+	# ----------------------------------------------------------------------------------------------------------------
+	# Consome vereador_matricula
+	# ----------------------------------------------------------------------------------------------------------------
+	def consome_vereador_matricula(self, matricula):
+		search_url = '{}/api/spl/vereador_matricula/{}/?format=json'.format(self.MSCMC_SERVER, matricula)
+		r = requests.get(search_url, verify=False)
+		vereador = r.json()
+		try:
+			result = vereador[0]
+		except:
+			result = None
+		return result
+
+	# ----------------------------------------------------------------------------------------------------------------
+	# Consome vereador_matricula
+	# ----------------------------------------------------------------------------------------------------------------
+	def consome_cargos_mesa(self):
+		retorno = []
+		search_url = '{}/api/spl/cargos_mesa/?format=json'.format(self.MSCMC_SERVER)
+		r = requests.get(search_url, verify=False)
+		cargos_mesa = r.json()
+
+		return JsonResponse(cargos_mesa, safe=False)
