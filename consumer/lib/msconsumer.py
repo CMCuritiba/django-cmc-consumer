@@ -185,3 +185,15 @@ class MSCMCConsumer(object):
 		except:
 			result = None
 		return result
+
+	# -----------------------------------------------------------------------------------
+	# chamada API textos de conclusão através código da proposição
+	# -----------------------------------------------------------------------------------
+	def consome_textos_conclusao(self, pro_codigo):
+		search_url = '{}/api/spl/textos_conclusao/{}/'.format(self.MSCMC_SERVER, pro_codigo)
+
+		array_json=[]
+		r = requests.get(search_url, verify=False)
+		textos = r.json()
+
+		return JsonResponse(textos, safe=False)		

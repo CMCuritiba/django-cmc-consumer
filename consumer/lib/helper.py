@@ -45,3 +45,9 @@ class ServiceHelper(object):
 		for line in setores:
 			objetos_setores.append(Setor(line['set_id'], line['set_nome'], line['set_sigla'], line['set_id_superior'], line['set_ativo'], line['set_tipo']))
 		return objetos_setores
+
+	# ----------------------------------------------------------------------------------------------------------------
+	# Retorna textos de conclusão dos projetos
+	# ----------------------------------------------------------------------------------------------------------------		
+	def get_textos_conclusao(self, pro_codigo):
+		return self.cons.consome_textos_conclusao(pro_codigo)
