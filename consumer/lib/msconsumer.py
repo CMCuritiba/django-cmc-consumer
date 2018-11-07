@@ -88,9 +88,10 @@ class MSCMCConsumer(object):
 	def consome_setores(self):
 		retorno = []
 		search_url = '{}/api/setores/?format=json'.format(self.MSCMC_SERVER)
-		raw = urllib.request.urlopen(search_url)
-		data = json.load(raw)
-		return data
+		r = requests.get(search_url, verify=False)
+		#raw = urllib.request.urlopen(search_url)
+		setores = r.json()
+		return JsonResponse(setores, safe=False)
 
 	# ----------------------------------------------------------------------------------------------------------------
 	# Consome setores
@@ -98,8 +99,10 @@ class MSCMCConsumer(object):
 	def consome_setores_combo(self):
 		retorno = []
 		search_url = '{}/api/setores/?format=json'.format(self.MSCMC_SERVER)
-		raw = urllib.request.urlopen(search_url)
-		data = json.load(raw)
+		#raw = urllib.request.urlopen(search_url)
+		#data = json.load(raw)
+		r = requests.get(search_url, verify=False)
+		data = r.json()
 		return JsonResponse(data, safe=False)
 
 	# ----------------------------------------------------------------------------------------------------------------
@@ -108,9 +111,10 @@ class MSCMCConsumer(object):
 	def consome_funcionarios(self):
 		retorno = []
 		search_url = '{}/api/funcionarios/?format=json'.format(self.MSCMC_SERVER)
-		raw = urllib.request.urlopen(search_url)
-		data = json.load(raw)
-		return data
+		#raw = urllib.request.urlopen(search_url)
+		r = requests.get(search_url, verify=False)
+		data = r.json()
+		return JsonResponse(data, safe=False)
 
 	# ----------------------------------------------------------------------------------------------------------------
 	# Consome o serviço que retorna dados do funcionario através da chave
