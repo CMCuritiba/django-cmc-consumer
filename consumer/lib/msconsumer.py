@@ -66,20 +66,21 @@ class MSCMCConsumer(object):
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_setor(self, matricula):
 		search_url = '{}/api/setor/{}/?format=json'.format(self.MSCMC_SERVER, matricula)
-		raw = urllib.request.urlopen(search_url)
-		js = raw.readlines()
-		js_object = json.loads(js[0])
-		return Setor(js_object['set_id'], js_object['set_nome'], js_object['set_sigla'], js_object['set_id_superior'], js_object['set_ativo'], js_object['set_tipo'])
+		#raw = urllib.request.urlopen(search_url)
+		r = requests.get(search_url, verify=False)
+		#js = raw.readlines()
+		js = r.sjon()
+		return Setor(js['set_id'], js['set_nome'], js['set_sigla'], js['set_id_superior'], js['set_ativo'], js['set_tipo'])
 
 	# ----------------------------------------------------------------------------------------------------------------
 	# Consome o serviço que retorna dados do setor atraves codigo do setor
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_setor_setor(self,set_id):
 		search_url = '{}/api/setor_setor/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
-		raw = urllib.request.urlopen(search_url)
-		js = raw.readlines()
-		js_object = json.loads(js[0])
-		return Setor(js_object['set_id'], js_object['set_nome'], js_object['set_sigla'], js_object['set_id_superior'], js_object['set_ativo'], js_object['set_tipo'])		
+		#raw = urllib.request.urlopen(search_url)
+		r = requests.get(search_url, verify=False)
+		js = r.json()
+		return Setor(js['set_id'], js['set_nome'], js['set_sigla'], js['set_id_superior'], js['set_ativo'], js['set_tipo'])		
 
 	# ----------------------------------------------------------------------------------------------------------------
 	# Consome setores
@@ -116,10 +117,11 @@ class MSCMCConsumer(object):
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_funcionario(self, chave):
 		search_url = '{}/api/funcionario/{}/?format=json'.format(self.MSCMC_SERVER, chave)
-		raw = urllib.request.urlopen(search_url)
-		js = raw.readlines()
-		js_object = json.loads(js[0])
-		return data
+
+		r = requests.get(search_url, verify=False)
+		#js = raw.readlines()
+		js = r.json()
+		JsonResponse(js, safe=False)		
 
 	# -----------------------------------------------------------------------------------
 	# chamada API reunioes comissao
