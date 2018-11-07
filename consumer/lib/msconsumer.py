@@ -91,7 +91,7 @@ class MSCMCConsumer(object):
 		r = requests.get(search_url, verify=False)
 		#raw = urllib.request.urlopen(search_url)
 		setores = r.json()
-		return JsonResponse(setores, safe=False)
+		return setores
 
 	# ----------------------------------------------------------------------------------------------------------------
 	# Consome setores
