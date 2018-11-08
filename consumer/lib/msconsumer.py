@@ -1,4 +1,3 @@
-import urllib.request
 import environ
 import simplejson as json
 from django.conf import settings
@@ -66,9 +65,7 @@ class MSCMCConsumer(object):
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_setor(self, matricula):
 		search_url = '{}/api/setor/{}/?format=json'.format(self.MSCMC_SERVER, matricula)
-		#raw = urllib.request.urlopen(search_url)
 		r = requests.get(search_url, verify=False)
-		#js = raw.readlines()
 		js = r.sjon()
 		return Setor(js['set_id'], js['set_nome'], js['set_sigla'], js['set_id_superior'], js['set_ativo'], js['set_tipo'])
 
@@ -77,7 +74,6 @@ class MSCMCConsumer(object):
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_setor_setor(self,set_id):
 		search_url = '{}/api/setor_setor/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
-		#raw = urllib.request.urlopen(search_url)
 		r = requests.get(search_url, verify=False)
 		js = r.json()
 		return Setor(js['set_id'], js['set_nome'], js['set_sigla'], js['set_id_superior'], js['set_ativo'], js['set_tipo'])		
@@ -89,7 +85,6 @@ class MSCMCConsumer(object):
 		retorno = []
 		search_url = '{}/api/setores/?format=json'.format(self.MSCMC_SERVER)
 		r = requests.get(search_url, verify=False)
-		#raw = urllib.request.urlopen(search_url)
 		setores = r.json()
 		return setores
 
@@ -99,8 +94,6 @@ class MSCMCConsumer(object):
 	def consome_setores_combo(self):
 		retorno = []
 		search_url = '{}/api/setores/?format=json'.format(self.MSCMC_SERVER)
-		#raw = urllib.request.urlopen(search_url)
-		#data = json.load(raw)
 		r = requests.get(search_url, verify=False)
 		data = r.json()
 		return JsonResponse(data, safe=False)
@@ -111,7 +104,6 @@ class MSCMCConsumer(object):
 	def consome_funcionarios(self):
 		retorno = []
 		search_url = '{}/api/funcionarios/?format=json'.format(self.MSCMC_SERVER)
-		#raw = urllib.request.urlopen(search_url)
 		r = requests.get(search_url, verify=False)
 		data = r.json()
 		return JsonResponse(data, safe=False)
@@ -123,7 +115,6 @@ class MSCMCConsumer(object):
 		search_url = '{}/api/funcionario/{}/?format=json'.format(self.MSCMC_SERVER, chave)
 
 		r = requests.get(search_url, verify=False)
-		#js = raw.readlines()
 		js = r.json()
 		JsonResponse(js, safe=False)		
 
