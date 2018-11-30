@@ -124,7 +124,6 @@ class MSCMCConsumer(object):
 	def consome_reuniao_comissao(self):
 		search_url = '{}/api/spl/reuniao_comissao/'.format(self.MSCMC_SERVER)
 
-		array_json=[]
 		r = requests.get(search_url, verify=False)
 		reunioes = r.json()
 
@@ -136,7 +135,6 @@ class MSCMCConsumer(object):
 	def consome_projeto(self, request, pac_id, par_id):
 		search_url = '{}/api/spl/projeto_reuniao/{}/{}/'.format(self.MSCMC_SERVER, pac_id, par_id)
 
-		array_json=[]
 		r = requests.get(search_url, verify=False)
 		projeto = r.json()
 
@@ -148,7 +146,6 @@ class MSCMCConsumer(object):
 	def consome_projetos(self, request, pac_id):
 		search_url = '{}/api/spl/projetos_reuniao/{}/'.format(self.MSCMC_SERVER, pac_id)
 
-		array_json=[]
 		r = requests.get(search_url, verify=False)
 		projetos = r.json()
 
@@ -160,7 +157,6 @@ class MSCMCConsumer(object):
 	def consome_reuniao_comissao_range(self, request, data_inicio, data_fim):
 		search_url = '{}/api/spl/reuniao_comissao_range/{}/{}/'.format(self.MSCMC_SERVER, data_inicio, data_fim)
 
-		array_json=[]
 		r = requests.get(search_url, verify=False)
 		reunioes = r.json()
 
@@ -257,3 +253,15 @@ class MSCMCConsumer(object):
 		cargos_mesa = r.json()
 
 		return JsonResponse(cargos_mesa, safe=False)
+
+
+	# ----------------------------------------------------------------------------------------------------------------
+	# Consome usuários LDAP
+	# ----------------------------------------------------------------------------------------------------------------
+	def consome_usuarios_ldap(self):
+		retorno = []
+		search_url = '{}/api/ldap/usuarios/'.format(self.MSCMC_SERVER)
+		r = requests.get(search_url, verify=False)
+		usuarios = r.json()
+
+		return JsonResponse(usuarios, safe=False)
