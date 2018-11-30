@@ -41,7 +41,6 @@ class ServiceHelper(object):
     # ----------------------------------------------------------------------------------------------------------------
     def get_setores_combo(self, inicial):
         setores = self.cons.consome_setores()
-        print(setores)
         objetos_setores = []
         objetos_setores.append(Setor(None, inicial, inicial, None, None, None))
         for line in setores:
@@ -91,7 +90,6 @@ class ServiceHelper(object):
     # ----------------------------------------------------------------------------------------------------------------
     def get_setores_combo(self, inicial):
         setores = self.cons.consome_setores()
-        print(setores)
         objetos_setores = []
         objetos_setores.append(Setor(None, inicial, inicial, None, None, None))
         for line in setores:
