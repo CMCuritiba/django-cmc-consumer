@@ -265,3 +265,13 @@ class MSCMCConsumer(object):
 		usuarios = r.json()
 
 		return JsonResponse(usuarios, safe=False)
+	
+	# ----------------------------------------------------------------------------------------------------------------
+	# Consome funcionarios por setor
+	# ----------------------------------------------------------------------------------------------------------------
+	def consome_funcionarios_setor(self, set_id):
+		retorno = []
+		search_url = '{}/api/funcionarios_setor/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
+		r = requests.get(search_url, verify=False)
+		data = r.json()
+		return JsonResponse(data, safe=False)		
