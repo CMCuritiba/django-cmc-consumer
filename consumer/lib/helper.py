@@ -121,3 +121,12 @@ class ServiceHelper(object):
                                                                        line['crg_nome'], line['crg_ordem']))
         return objetos_vereadores_cargo_mesa
 
+    # ----------------------------------------------------------------------------------------------------------------
+    # Retorna funcionarios consumidos 
+    # ----------------------------------------------------------------------------------------------------------------
+    def get_funcionarios_setor(self, set_id):
+        funcionarios = self.cons.consome_funcionarios_setor(set_id)
+        objetos_funcionarios = []
+        for line in funcionarios:
+            objetos_funcionarios.append(Funcionario(line['matricula'], line['pessoa'], line['pes_nome'], line['funcao'], line['set_id'], line['ind_estagiario']))
+        return objetos_funcionarios
