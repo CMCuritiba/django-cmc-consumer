@@ -66,7 +66,7 @@ class MSCMCConsumer(object):
 	def consome_setor(self, matricula):
 		search_url = '{}/api/setor/{}/?format=json'.format(self.MSCMC_SERVER, matricula)
 		r = requests.get(search_url, verify=False)
-		js = r.sjon()
+		js = r.json()
 		return Setor(js['set_id'], js['set_nome'], js['set_sigla'], js['set_id_superior'], js['set_ativo'], js['set_tipo'])
 
 	# ----------------------------------------------------------------------------------------------------------------
@@ -271,7 +271,9 @@ class MSCMCConsumer(object):
 	# ----------------------------------------------------------------------------------------------------------------
 	def consome_funcionarios_setor(self, set_id):
 		retorno = []
-		search_url = '{}/api/funcionarios_setor/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
+		#search_url = '{}/api/funcionarios_setor/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
+		search_url = '{}/api/funcionarios_setor_func/{}/?format=json'.format(self.MSCMC_SERVER, set_id)
 		r = requests.get(search_url, verify=False)
 		data = r.json()
-		return JsonResponse(data, safe=False)		
+		#return JsonResponse(data, safe=False)		
+		return data
